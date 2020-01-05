@@ -18,13 +18,9 @@ class Board extends React.Component {
         this.handleChangeName = this.handleChangeName.bind(this);
     }
     handleChangeName (event) {
-        this.setState({nameClient: event.target.value});
+        this.setState({nameclient: event.target.value});
         console.log(this.state)
     }
-    handleSubmitName(event) {
-        alert('A name was submitted: ' + this.state.nameClient);
-        event.preventDefault();
-      }
     // handleBreakfastMenu (){
     //     this.setState({
     //         breakfastMenu: true,
@@ -56,7 +52,7 @@ class Board extends React.Component {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="basic-addon1">Client</span>
                             </div>
-                            <input nameclient={this.state.nameClient} onChange={this.handleChangeName} type="text" className="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1"/>
+                            <input nameclient={this.state.nameclient} onChange={this.handleChangeName} type="text" className="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
                     </div>
                 </div>
@@ -66,7 +62,7 @@ class Board extends React.Component {
                             
                         </div>
                         <div className="col-6 text-center">
-                            <Link to={{pathname:"/regular", state: { nameclient: this.state.nameClient }}}><button type="button" className="btn btn-primary btn-lg">Regular Menu</button></Link>
+                            <Link to={{pathname:"/regular", state: { nameclient: this.state.nameclient }}}><button type="button" className="btn btn-primary btn-lg">Regular Menu</button></Link>
                         </div>
                         <Route
                             path="/breakfast"

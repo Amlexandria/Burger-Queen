@@ -9,11 +9,11 @@ class Regular extends React.Component {
         }
     }
     componentDidMount() {
-        var recievedMessage = this.props.location.state.nameclient;
+        const recievedName = this.props.location.state.nameclient;
         this.setState ({
-            name: recievedMessage,
+            name: recievedName,
         });
-        console.log(recievedMessage, 'EL NOMBRE');
+        console.log(recievedName, 'EL NOMBRE');
     }
     render() {
         return(
@@ -21,7 +21,7 @@ class Regular extends React.Component {
                 <div className="row pt-3">
                     <div className="col-12">
                         <h4>Regular Menu</h4>
-                        <h4>{this.state.name}</h4>
+                        <p>{this.state.name}</p>
                     </div>
                     <div className="col-7 pt-5">
                         <div className="row">
@@ -73,7 +73,7 @@ class Regular extends React.Component {
                         </div>
                     </div>
                     <div className="col-5">
-                        <Order />
+                        <Order nameclient={this.state.name}/>
                     </div>
                 </div>
                 <div className="modal fade" id="simpleOrDobble" data-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
