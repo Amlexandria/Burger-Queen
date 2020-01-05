@@ -4,8 +4,8 @@ import Order from './Order.js'
 class Breakfast extends React.Component {
     render() {
         return(
-            <div className="container">
-                <div className="row">
+            <div className="container pt-5">
+                <div className="row pt-3">
                     <div className="col-12">
                         <h4>Breakfast Menu</h4>
                     </div>

@@ -1,32 +1,48 @@
 import React from 'react';
+import { 
+    BrowserRouter as Router,
+    Route,
+    Link } from 'react-router-dom';
+import Breakfast from './Breakfast.js';
+import Regular from './Regular.js';
 
 class Board extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
+            nameclient: '',
             breakfastMenu: false,
             regularMenu: false,
         }
+        this.handleChangeName = this.handleChangeName.bind(this);
     }
-    
-    handleBreakfastMenu (){
-        this.setState({
-            breakfastMenu: true,
-            regularMenu: false,
-        });
-        console.log(this.state);
+    handleChangeName (event) {
+        this.setState({nameClient: event.target.value});
+        console.log(this.state)
     }
-    handleRegulartMenu (){
-        this.setState({
-            regularMenu: true,
-            breakfastMenu: false,
-        });
-        console.log(this.state);
-    }
+    handleSubmitName(event) {
+        alert('A name was submitted: ' + this.state.nameClient);
+        event.preventDefault();
+      }
+    // handleBreakfastMenu (){
+    //     this.setState({
+    //         breakfastMenu: true,
+    //         regularMenu: false,
+    //     });
+    //     console.log(this.state);
+    // }
+    // handleRegulartMenu (){
+    //     this.setState({
+    //         regularMenu: true,
+    //         breakfastMenu: false,
+    //     });
+    //     console.log(this.state);
+    // }
     render() {
         return(
             <div className="container-fluid">
+                <Router>
                 <div className="row">
                     <div className="col-12">
                         <nav className="navbar navbar-light bg-light">
@@ -40,18 +56,30 @@ class Board extends React.Component {
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="basic-addon1">Client</span>
                             </div>
-                            <input type="text" className="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1"/>
+                            <input nameclient={this.state.nameClient} onChange={this.handleChangeName} type="text" className="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
                     </div>
                 </div>
                 <div className="row pt-5">
-                    <div className="col-6 text-center">
-                        <button type="button" className="btn btn-primary btn-lg" onClick={() => this.handleBreakfastMenu()}>Breakfast Menu</button>
-                    </div>
-                    <div className="col-6 text-center">
-                        <button type="button" className="btn btn-primary btn-lg" onClick={() => this.handleRegulartMenu()}>Regular Menu</button>
-                    </div>
+                        <div className="col-6 text-center">
+                            <Link to="/breakfast"><button type="button" className="btn btn-primary btn-lg">Breakfast Menu</button></Link>
+                            
+                        </div>
+                        <div className="col-6 text-center">
+                            <Link to={{pathname:"/regular", state: { nameclient: this.state.nameClient }}}><button type="button" className="btn btn-primary btn-lg">Regular Menu</button></Link>
+                        </div>
+                        <Route
+                            path="/breakfast"
+                            component={Breakfast}
+                            exact 
+                        />
+                        <Route
+                            path="/regular"
+                            component={Regular}
+                            exact 
+                        />
                 </div>
+                </Router>
             </div>
         );
     }

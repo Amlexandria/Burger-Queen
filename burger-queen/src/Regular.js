@@ -2,12 +2,26 @@ import React from 'react';
 import Order from './Order.js'
 
 class Regular extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            name: '',
+        }
+    }
+    componentDidMount() {
+        var recievedMessage = this.props.location.state.nameclient;
+        this.setState ({
+            name: recievedMessage,
+        });
+        console.log(recievedMessage, 'EL NOMBRE');
+    }
     render() {
         return(
-            <div className="container">
-                <div className="row">
+            <div className="container pt-5">
+                <div className="row pt-3">
                     <div className="col-12">
                         <h4>Regular Menu</h4>
+                        <h4>{this.state.name}</h4>
                     </div>
                     <div className="col-7 pt-5">
                         <div className="row">

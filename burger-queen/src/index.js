@@ -86,9 +86,9 @@ import Regular from './Regular.js';
   // ========================================
   
   ReactDOM.render(
-    // <Board />,
+    <Board />,
     // <Breakfast />,
-    <Regular />,
+    // <Regular />,
     document.getElementById('root')
   );
   
