@@ -23,14 +23,6 @@ class Regular extends React.Component {
             name: recievedName,
         });
     }
-    componentWillReceiveProps(){
-        
-    }
-    componentWillUpdate(){
-        // if(this.state.burgerType != '' && this.state.burgerPrice != null){
-        // }
-        
-    }
     handleBurgerType(ingredient){
         this.setState({productName: 'Burger'});
         this.setState({burgerIngredient: ingredient});
@@ -43,13 +35,12 @@ class Regular extends React.Component {
         burger.type = type;
         this.state.burgers.push(burger);
         this.handleTotal(this.state.burgers)
-        // console.log(burger, price);
     }
-
+ 
     handleTotal(list){
         this.state.total = 0;
         
-        this.state.burgers.map((item)=>{
+        list.map((item)=>{
            this.state.total += item.price;
         })
     }
@@ -112,7 +103,7 @@ class Regular extends React.Component {
                         </div>
                     </div>
                     <div className="col-5">
-                        <Order nameclient={this.state.name} burgers={this.state.burgers} totalprice={this.state.total}/>
+                        <Order nameclient={this.state.name} burgers={this.state.burgers} totalprice={this.state.total} />
                     </div>
                 </div>
                 <div className="modal fade" id="simpleOrDobble" data-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
