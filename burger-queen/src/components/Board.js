@@ -43,7 +43,7 @@ class Board extends React.Component {
                 </div>
                 <div className="row pt-5">
                     <div className="col-6 text-center">
-                        <Link to={{pathname:"/breakfast", state: { nameclient: this.state.nameclient }}}><button type="button" className="btn btn-primary btn-lg">Breakfast Menu</button></Link>
+                        {/* <Link to={{pathname:"/breakfast", state: { nameclient: this.state.nameclient }}}><button type="button" className="btn btn-primary btn-lg">Breakfast Menu</button></Link> */}
                         
                     </div>
                     <div className="col-6 text-center">
