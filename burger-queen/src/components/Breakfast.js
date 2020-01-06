@@ -2,6 +2,18 @@ import React from 'react';
 import Order from './Order.js'
 
 class Breakfast extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            name: '',
+        }
+    }
+    componentDidMount() {
+        const recievedName = this.props.location.state.nameclient;
+        this.setState ({
+            name: recievedName,
+        });
+    }
     render() {
         return(
             <div className="container pt-5">
@@ -24,7 +36,7 @@ class Breakfast extends React.Component {
                         </div>
                     </div>
                     <div className="col-5">
-                        <Order />
+                        <Order nameclient={this.state.name}/>
                     </div>
                 </div>
             </div>

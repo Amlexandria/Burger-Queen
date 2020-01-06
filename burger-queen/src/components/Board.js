@@ -21,24 +21,9 @@ class Board extends React.Component {
         this.setState({nameclient: event.target.value});
         console.log(this.state)
     }
-    // handleBreakfastMenu (){
-    //     this.setState({
-    //         breakfastMenu: true,
-    //         regularMenu: false,
-    //     });
-    //     console.log(this.state);
-    // }
-    // handleRegulartMenu (){
-    //     this.setState({
-    //         regularMenu: true,
-    //         breakfastMenu: false,
-    //     });
-    //     console.log(this.state);
-    // }
     render() {
         return(
             <div className="container-fluid">
-                <Router>
                 <div className="row">
                     <div className="col-12">
                         <nav className="navbar navbar-light bg-light">
@@ -57,25 +42,14 @@ class Board extends React.Component {
                     </div>
                 </div>
                 <div className="row pt-5">
-                        <div className="col-6 text-center">
-                            <Link to="/breakfast"><button type="button" className="btn btn-primary btn-lg">Breakfast Menu</button></Link>
-                            
-                        </div>
-                        <div className="col-6 text-center">
-                            <Link to={{pathname:"/regular", state: { nameclient: this.state.nameclient }}}><button type="button" className="btn btn-primary btn-lg">Regular Menu</button></Link>
-                        </div>
-                        <Route
-                            path="/breakfast"
-                            component={Breakfast}
-                            exact 
-                        />
-                        <Route
-                            path="/regular"
-                            component={Regular}
-                            exact 
-                        />
+                    <div className="col-6 text-center">
+                        <Link to={{pathname:"/breakfast", state: { nameclient: this.state.nameclient }}}><button type="button" className="btn btn-primary btn-lg">Breakfast Menu</button></Link>
+                        
+                    </div>
+                    <div className="col-6 text-center">
+                        <Link to={{pathname:"/regular", state: { nameclient: this.state.nameclient }}}><button type="button" className="btn btn-primary btn-lg">Regular Menu</button></Link>
+                    </div>
                 </div>
-                </Router>
             </div>
         );
     }
