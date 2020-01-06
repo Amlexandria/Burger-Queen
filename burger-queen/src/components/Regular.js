@@ -1,11 +1,20 @@
 import React from 'react';
 import Order from './Order.js'
+import { interfaceDeclaration } from '@babel/types';
+import { log } from 'util';
 
 class Regular extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             name: '',
+            burgers:[],
+            burgerIngredient: '',
+            burgerPrice: null,
+            total: 0,
+            productName: '',
+            burgerType: ''
+
         }
     }
     componentDidMount() {
@@ -13,8 +22,38 @@ class Regular extends React.Component {
         this.setState ({
             name: recievedName,
         });
-        console.log(recievedName, 'EL NOMBRE');
     }
+    componentWillReceiveProps(){
+        
+    }
+    componentWillUpdate(){
+        // if(this.state.burgerType != '' && this.state.burgerPrice != null){
+        // }
+        
+    }
+    handleBurgerType(ingredient){
+        this.setState({productName: 'Burger'});
+        this.setState({burgerIngredient: ingredient});
+    }
+    handleBurgerPrice(price, type){
+        this.setState({burgerPrice: price});
+        this.setState({burgerType: type});
+        let burger = {productName: this.state.productName ,ingredient: this.state.burgerIngredient,type:this.state.burgerType, price: this.state.burgerPrice};
+        burger.price = price;
+        burger.type = type;
+        this.state.burgers.push(burger);
+        this.handleTotal(this.state.burgers)
+        // console.log(burger, price);
+    }
+
+    handleTotal(list){
+        this.state.total = 0;
+        
+        this.state.burgers.map((item)=>{
+           this.state.total += item.price;
+        })
+    }
+
     render() {
         return(
             <div className="container pt-5">
@@ -29,7 +68,7 @@ class Regular extends React.Component {
                                 <h5>Hamburguesas</h5>
                             </div>
                             <div className="col-12">
-                                <button type="button" className="btn btn-primary btn-lg m-2" data-toggle="modal" data-target="#simpleOrDobble">
+                                <button onClick={() => this.handleBurgerType('Res')} type="button" className="btn btn-primary btn-lg m-2" data-toggle="modal" data-target="#simpleOrDobble">
                                 Res
                                 </button>
                                 <button type="button" className="btn btn-primary btn-lg m-2" data-toggle="modal" data-target="#simpleOrDobble">
@@ -73,7 +112,7 @@ class Regular extends React.Component {
                         </div>
                     </div>
                     <div className="col-5">
-                        <Order nameclient={this.state.name}/>
+                        <Order nameclient={this.state.name} burgers={this.state.burgers} totalprice={this.state.total}/>
                     </div>
                 </div>
                 <div className="modal fade" id="simpleOrDobble" data-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -85,8 +124,8 @@ class Regular extends React.Component {
                             </button>
                         </div>
                         <div className="modal-body text-center">
-                            <button type="button" className="btn btn-primary btn-lg m-2">Simple</button>
-                            <button type="button" className="btn btn-primary btn-lg m-2">Doble</button>
+                            <button onClick={() => this.handleBurgerPrice(10, 'Simple')}  type="button" data-dismiss="modal" className="btn btn-primary btn-lg m-2">Simple</button>
+                            <button onClick={() => this.handleBurgerPrice(15, 'Dobble')}type="button" data-dismiss="modal" className="btn btn-primary btn-lg m-2">Doble</button>
                         </div>
                         </div>
                     </div>
